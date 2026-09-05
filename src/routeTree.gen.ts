@@ -10,33 +10,185 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as ProgramRouteImport } from './routes/program'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminExercisesRouteImport } from './routes/admin.exercises'
+import { Route as AdminClientsIndexRouteImport } from './routes/admin.clients.index'
+import { Route as AdminClientsClientIdRouteImport } from './routes/admin.clients.$clientId'
+import { Route as AdminProgramsIndexRouteImport } from './routes/admin.programs.index'
+import { Route as AdminProgramsProgramIdRouteImport } from './routes/admin.programs.$programId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramRoute = ProgramRouteImport.update({
+  id: '/program',
+  path: '/program',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminExercisesRoute = AdminExercisesRouteImport.update({
+  id: '/exercises',
+  path: '/exercises',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminClientsIndexRoute = AdminClientsIndexRouteImport.update({
+  id: '/clients/',
+  path: '/clients/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminClientsClientIdRoute = AdminClientsClientIdRouteImport.update({
+  id: '/clients/$clientId',
+  path: '/clients/$clientId',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProgramsIndexRoute = AdminProgramsIndexRouteImport.update({
+  id: '/programs/',
+  path: '/programs/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProgramsProgramIdRoute = AdminProgramsProgramIdRouteImport.update({
+  id: '/programs/$programId',
+  path: '/programs/$programId',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
+  '/program': typeof ProgramRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
+  '/admin/programs/$programId': typeof AdminProgramsProgramIdRoute
+  '/admin/clients/': typeof AdminClientsIndexRoute
+  '/admin/programs/': typeof AdminProgramsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
+  '/program': typeof ProgramRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
+  '/admin/programs/$programId': typeof AdminProgramsProgramIdRoute
+  '/admin/clients': typeof AdminClientsIndexRoute
+  '/admin/programs': typeof AdminProgramsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/home': typeof HomeRoute
+  '/profile': typeof ProfileRoute
+  '/program': typeof ProgramRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
+  '/admin/programs/$programId': typeof AdminProgramsProgramIdRoute
+  '/admin/clients/': typeof AdminClientsIndexRoute
+  '/admin/programs/': typeof AdminProgramsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/home'
+    | '/profile'
+    | '/program'
+    | '/reset-password'
+    | '/admin/exercises'
+    | '/admin/'
+    | '/admin/clients/$clientId'
+    | '/admin/programs/$programId'
+    | '/admin/clients/'
+    | '/admin/programs/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/home'
+    | '/profile'
+    | '/program'
+    | '/reset-password'
+    | '/admin/exercises'
+    | '/admin'
+    | '/admin/clients/$clientId'
+    | '/admin/programs/$programId'
+    | '/admin/clients'
+    | '/admin/programs'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/home'
+    | '/profile'
+    | '/program'
+    | '/reset-password'
+    | '/admin/exercises'
+    | '/admin/'
+    | '/admin/clients/$clientId'
+    | '/admin/programs/$programId'
+    | '/admin/clients/'
+    | '/admin/programs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  HomeRoute: typeof HomeRoute
+  ProfileRoute: typeof ProfileRoute
+  ProgramRoute: typeof ProgramRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +200,121 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/program': {
+      id: '/program'
+      path: '/program'
+      fullPath: '/program'
+      preLoaderRoute: typeof ProgramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/exercises': {
+      id: '/admin/exercises'
+      path: '/exercises'
+      fullPath: '/admin/exercises'
+      preLoaderRoute: typeof AdminExercisesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/clients/': {
+      id: '/admin/clients/'
+      path: '/clients'
+      fullPath: '/admin/clients/'
+      preLoaderRoute: typeof AdminClientsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/clients/$clientId': {
+      id: '/admin/clients/$clientId'
+      path: '/clients/$clientId'
+      fullPath: '/admin/clients/$clientId'
+      preLoaderRoute: typeof AdminClientsClientIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/programs/': {
+      id: '/admin/programs/'
+      path: '/programs'
+      fullPath: '/admin/programs/'
+      preLoaderRoute: typeof AdminProgramsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/programs/$programId': {
+      id: '/admin/programs/$programId'
+      path: '/programs/$programId'
+      fullPath: '/admin/programs/$programId'
+      preLoaderRoute: typeof AdminProgramsProgramIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminExercisesRoute: typeof AdminExercisesRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminClientsClientIdRoute: typeof AdminClientsClientIdRoute
+  AdminProgramsProgramIdRoute: typeof AdminProgramsProgramIdRoute
+  AdminClientsIndexRoute: typeof AdminClientsIndexRoute
+  AdminProgramsIndexRoute: typeof AdminProgramsIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminExercisesRoute: AdminExercisesRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminClientsClientIdRoute: AdminClientsClientIdRoute,
+  AdminProgramsProgramIdRoute: AdminProgramsProgramIdRoute,
+  AdminClientsIndexRoute: AdminClientsIndexRoute,
+  AdminProgramsIndexRoute: AdminProgramsIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  AuthRoute: AuthRoute,
+  HomeRoute: HomeRoute,
+  ProfileRoute: ProfileRoute,
+  ProgramRoute: ProgramRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
