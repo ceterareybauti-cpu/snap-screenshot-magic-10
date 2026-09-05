@@ -1,10 +1,11 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Home, Dumbbell, User } from "lucide-react";
+import { Dumbbell, Home, User, Activity } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const items = [
   { to: "/home", label: "Inicio", icon: Home },
+  { to: "/workout", label: "Entrenar", icon: Activity },
   { to: "/program", label: "Programa", icon: Dumbbell },
   { to: "/profile", label: "Perfil", icon: User },
 ] as const;
