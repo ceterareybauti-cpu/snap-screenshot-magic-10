@@ -17,7 +17,10 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as ProgramRouteImport } from './routes/program'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminExercisesRouteImport } from './routes/admin.exercises'
 import { Route as AdminClientsIndexRouteImport } from './routes/admin.clients.index'
+import { Route as AdminClientsClientIdRouteImport } from './routes/admin.clients.$clientId'
+import { Route as AdminProgramsIndexRouteImport } from './routes/admin.programs.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,9 +62,24 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminExercisesRoute = AdminExercisesRouteImport.update({
+  id: '/exercises',
+  path: '/exercises',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminClientsIndexRoute = AdminClientsIndexRouteImport.update({
   id: '/clients/',
   path: '/clients/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminClientsClientIdRoute = AdminClientsClientIdRouteImport.update({
+  id: '/clients/$clientId',
+  path: '/clients/$clientId',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProgramsIndexRoute = AdminProgramsIndexRouteImport.update({
+  id: '/programs/',
+  path: '/programs/',
   getParentRoute: () => AdminRoute,
 } as any)
 
@@ -73,8 +91,11 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/program': typeof ProgramRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
   '/admin/clients/': typeof AdminClientsIndexRoute
+  '/admin/programs/': typeof AdminProgramsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,8 +104,11 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/program': typeof ProgramRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
   '/admin/clients': typeof AdminClientsIndexRoute
+  '/admin/programs': typeof AdminProgramsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,8 +119,11 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/program': typeof ProgramRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin/exercises': typeof AdminExercisesRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/clients/$clientId': typeof AdminClientsClientIdRoute
   '/admin/clients/': typeof AdminClientsIndexRoute
+  '/admin/programs/': typeof AdminProgramsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -108,8 +135,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/program'
     | '/reset-password'
+    | '/admin/exercises'
     | '/admin/'
+    | '/admin/clients/$clientId'
     | '/admin/clients/'
+    | '/admin/programs/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,8 +148,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/program'
     | '/reset-password'
+    | '/admin/exercises'
     | '/admin'
+    | '/admin/clients/$clientId'
     | '/admin/clients'
+    | '/admin/programs'
   id:
     | '__root__'
     | '/'
@@ -129,8 +162,11 @@ export interface FileRouteTypes {
     | '/profile'
     | '/program'
     | '/reset-password'
+    | '/admin/exercises'
     | '/admin/'
+    | '/admin/clients/$clientId'
     | '/admin/clients/'
+    | '/admin/programs/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -201,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/exercises': {
+      id: '/admin/exercises'
+      path: '/exercises'
+      fullPath: '/admin/exercises'
+      preLoaderRoute: typeof AdminExercisesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/clients/': {
       id: '/admin/clients/'
       path: '/clients'
@@ -208,17 +251,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminClientsIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/clients/$clientId': {
+      id: '/admin/clients/$clientId'
+      path: '/clients/$clientId'
+      fullPath: '/admin/clients/$clientId'
+      preLoaderRoute: typeof AdminClientsClientIdRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/programs/': {
+      id: '/admin/programs/'
+      path: '/programs'
+      fullPath: '/admin/programs/'
+      preLoaderRoute: typeof AdminProgramsIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminExercisesRoute: typeof AdminExercisesRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminClientsClientIdRoute: typeof AdminClientsClientIdRoute
   AdminClientsIndexRoute: typeof AdminClientsIndexRoute
+  AdminProgramsIndexRoute: typeof AdminProgramsIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminExercisesRoute: AdminExercisesRoute,
   AdminIndexRoute: AdminIndexRoute,
+  AdminClientsClientIdRoute: AdminClientsClientIdRoute,
   AdminClientsIndexRoute: AdminClientsIndexRoute,
+  AdminProgramsIndexRoute: AdminProgramsIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
