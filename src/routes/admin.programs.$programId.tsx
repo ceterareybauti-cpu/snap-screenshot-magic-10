@@ -124,7 +124,11 @@ function ProgramDetail() {
   });
 
   const updateProgram = useMutation({
-    mutationFn: async (patch: Record<string, unknown>) => {
+    mutationFn: async (patch: {
+      client_id?: string | null;
+      description?: string | null;
+      is_active?: boolean;
+    }) => {
       const { error } = await supabase.from("workout_programs").update(patch).eq("id", programId);
       if (error) throw error;
     },
@@ -166,7 +170,7 @@ function ProgramDetail() {
     mutationFn: async () => {
       const day = program?.workout_days.find((d) => d.id === itemDayId);
       const { error } = await supabase.from("workout_exercises").insert({
-        day_id: itemDayId,
+        day_id: itemDayId!,
         exercise_id: item.exercise_id,
         sets: Number(item.sets) || 3,
         target_reps: item.target_reps || null,
